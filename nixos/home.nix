@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -19,11 +24,26 @@
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    #background image
     swaybg
+    # gcc and gnumake needed for telescope
+    gcc
+    gnumake
+    # fzf and ripgrep also needed for telescope / neovim
     fzf
     ripgrep
+    # lua formatter
+    stylua
+    # wlr-randr for screen info and other stuff
     wlr-randr
     claude-code
+
+    # screen capture
+    grim
+    slurp
+    swappy
+    # copy image to clipboard
+    wl-clipboard
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -66,7 +86,6 @@
 
   programs.starship = {
     enable = true;
-    # enableZshIntegration = true;  # default is already true
     settings = {
       add_newline = false;
       # ... anything you'd otherwise put in ~/.config/starship.toml
@@ -82,11 +101,10 @@
         "ohmyzsh/ohmyzsh path:lib"
         "zsh-users/zsh-completions"
         "zsh-users/zsh-autosuggestions"
-      ]; # explanation of "path:..." and other options explained in Antidote README.
+      ];
     };
 
     history.size = 10000;
   };
 
 }
-

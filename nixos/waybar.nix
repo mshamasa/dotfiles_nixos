@@ -27,10 +27,10 @@
 
         "ext/workspaces" = {
           format = "{name}";
-	  sort-by-id = true;
-	  ignore-hidden = true;
-	  "on-click" = "activate";
-	  "on-click-right" = "deactivate";
+          sort-by-id = true;
+          ignore-hidden = true;
+          "on-click" = "activate";
+          "on-click-right" = "deactivate";
         };
 
         clock = {
@@ -48,14 +48,24 @@
           };
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
-          format-icons = ["󰁺" "󰁻" "󰁽" "󰂀" "󰁹"];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁽"
+            "󰂀"
+            "󰁹"
+          ];
           interval = 60;
         };
 
         wireplumber = {
           format = "{icon} {volume}%";
           format-muted = "󰖁 {volume}%";
-          format-icons.default = ["󰕿" "󰖀" "󰕾"];
+          format-icons.default = [
+            "󰕿"
+            "󰖀"
+            "󰕾"
+          ];
           scroll-step = 1;
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+";
@@ -72,13 +82,13 @@
         # };
 
         network = {
-          format= "{ifname}";
+          format = "{ifname}";
           format-wifi = "󰤨  {essid} ({signalStrength}%)";
           format-ethernet = "󰈀  {ifname}";
           format-disconnected = "󰤭  Disconnected";
-          tooltip-format= "{ifname}";
-          tooltip-format-wifi= "{essid} ({signalStrength}%) ";
-          tooltip-format-ethernet= "{ifname} ";
+          tooltip-format = "{ifname}";
+          tooltip-format-wifi = "{essid} ({signalStrength}%) ";
+          tooltip-format-ethernet = "{ifname} ";
           tooltip-format-disconnected = "Disconnected";
           max-length = 50;
         };

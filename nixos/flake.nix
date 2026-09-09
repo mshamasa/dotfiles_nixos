@@ -1,7 +1,7 @@
 {
+  description = "NixOS system setup";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     mangowm = {
       url = "github:mangowm/mango";
@@ -15,16 +15,18 @@
   };
 
   outputs =
-    { nixpkgs, nixos-hardware, mangowm, home-manager, ... }:
     {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-
+      self,
+      nixpkgs,
+      mangowm,
+      home-manager,
+      ...
+    }:
+    {
       nixosConfigurations.ms = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-
         modules = [
           ./configuration.nix
-
           mangowm.nixosModules.mango
           home-manager.nixosModules.home-manager
           {

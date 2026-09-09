@@ -1,16 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
@@ -20,6 +18,7 @@
     systemd-boot.configurationLimit = 10;
   };
 
+  # removes stale builds on a weekly basis
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -28,38 +27,42 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "ms"; # Define your hostname.
-  # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  networking = {
+    hostName = "ms"; # Define your hostname.
+    # Configure network connections interactively with nmcli or nmtui.
+    networkmanager.enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
+  # services.displayManager.ly.enable = true;
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
         command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd mango";
-	user = "greeter";
+        user = "greeter";
       };
     };
   };
-
-  # Configure lid switch behavior (laptops)
-  # services.logind.settings.Login = {
-  #   HandleLidSwitch = "suspend";
-  # };
-  # services.logind.lidSwitchDocked = "ignore";
-  # services.logind.lidSwitchExternalPower = "lock";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ms = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-    ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ]; # Enable ‘sudo’ for the user.
+    # packages = with pkgs; [
+    #   tree
+    # ];
   };
 
   programs.mango.enable = true;
@@ -68,27 +71,36 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     neovim
     git
     wezterm
     greetd
     tuigreet
-    python3
-    # bluetooth tui
     bluetui
     brave
+    # nix lsp and formatter
+    # it's needed here at the root for it work on these files
+    nil
+    nixfmt-rfc-style
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.mononoki
   ];
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
-  system.stateVersion = "26.11"; # Did you read the comment?
+  system.activationScripts.rootNvimConfig.text = ''
+    mkdir -p /root/.config /root/.local/share
+    ln -sfn /home/ms/.config/nvim /root/.config/nvim
+    ln -sfn /home/ms/.local/share/nvim /root/.local/share/nvim
+  '';
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  system.stateVersion = "26.05";
 
 }
-
