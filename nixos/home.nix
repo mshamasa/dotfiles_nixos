@@ -44,6 +44,7 @@
     swappy
     # copy image to clipboard
     wl-clipboard
+    direnv
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
