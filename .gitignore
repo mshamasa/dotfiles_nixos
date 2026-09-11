@@ -1,0 +1,4 @@
+# Nix build output symlinks (created by `nixos-rebuild build` / `nix build`).
+# These are GC roots, so leaving them around pins whole system closures.
+result
+result-*

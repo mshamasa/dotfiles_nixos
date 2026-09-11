@@ -8,6 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./wifi-diagnostics.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -17,6 +18,14 @@
     systemd-boot.enable = true;
     systemd-boot.configurationLimit = 10;
   };
+
+  # this might help with wifi chip not loading on boot, not sure
+  # we can also try restarting the drivers with
+  # sudo modprobe -r mt7925e && sudo modprobe mt7925e
+  # -r meas remove/unmount and then calling it again means mount it again
+  boot.extraModprobeConfig = ''
+    options mt7925e disable_aspm=1
+  '';
 
   # removes stale builds on a weekly basis
   nix.gc = {
