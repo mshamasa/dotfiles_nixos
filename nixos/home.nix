@@ -44,7 +44,6 @@
     swappy
     # copy image to clipboard
     wl-clipboard
-    direnv
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -84,6 +83,11 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   programs.starship = {
     enable = true;
