@@ -89,27 +89,6 @@
     nix-direnv.enable = true;
   };
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-      # ... anything you'd otherwise put in ~/.config/starship.toml
-    };
-  };
-
-  programs.zsh = {
-    enable = true;
-
-    antidote = {
-      enable = true;
-      plugins = [
-        "ohmyzsh/ohmyzsh path:lib"
-        "zsh-users/zsh-completions"
-        "zsh-users/zsh-autosuggestions"
-      ];
-    };
-
-    history.size = 10000;
-  };
+  programs.fish.enable = true;
 
 }
