@@ -1,14 +1,10 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
     ./waybar.nix
     ./rofi.nix
+    ./mango.nix
   ];
 
   home.username = "ms";

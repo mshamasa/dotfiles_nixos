@@ -16,7 +16,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       mangowm,
       home-manager,
@@ -33,6 +32,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              sharedModules = [ mangowm.hmModules.mango ];
               users.ms = import ./home.nix;
               backupFileExtension = "backup";
             };

@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -89,10 +84,11 @@
     tuigreet
     bluetui
     brave
+    vivaldi
     # nix lsp and formatter
     # it's needed here at the root for it work on these files
     nil
-    nixfmt-rfc-style
+    nixfmt
   ];
 
   fonts.packages = with pkgs; [

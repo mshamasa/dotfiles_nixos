@@ -1,7 +1,4 @@
-{ config, pkgs, ... }:
-
 {
-
   programs.rofi = {
     enable = true;
     terminal = "wezterm"; # or your terminal of choice
