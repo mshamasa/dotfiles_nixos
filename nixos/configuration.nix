@@ -83,7 +83,6 @@
     greetd
     tuigreet
     bluetui
-    brave
     vivaldi
     # nix lsp and formatter
     # it's needed here at the root for it work on these files
