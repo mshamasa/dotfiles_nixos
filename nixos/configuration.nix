@@ -40,6 +40,14 @@
     hostName = "ms"; # Define your hostname.
     # Configure network connections interactively with nmcli or nmtui.
     networkmanager.enable = true;
+
+    firewall = {
+      allowedTCPPorts = [
+        8080
+        8081
+        8082
+      ];
+    };
   };
 
   # Set your time zone.
