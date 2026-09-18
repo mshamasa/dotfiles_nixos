@@ -109,6 +109,15 @@
     "flakes"
   ];
 
+  # point ~/.config/nvim at the copy tracked in this repo
+  # -T so an existing real directory is left alone instead of getting a
+  # nested nvim/nvim symlink; move it out of the way by hand if that happens
+  system.activationScripts.userNvimConfig.text = ''
+    mkdir -p /home/ms/.config
+    ln -sfnT /home/ms/Work/dotfiles_nixos/.config/nvim /home/ms/.config/nvim || true
+    chown -h ms:users /home/ms/.config/nvim || true
+  '';
+
   system.activationScripts.rootNvimConfig.text = ''
     mkdir -p /root/.config /root/.local/share
     ln -sfn /home/ms/.config/nvim /root/.config/nvim
