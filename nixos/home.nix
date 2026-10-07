@@ -40,6 +40,8 @@
     swappy
     # copy image to clipboard
     wl-clipboard
+    # postgres: nicer psql
+    pgcli
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
