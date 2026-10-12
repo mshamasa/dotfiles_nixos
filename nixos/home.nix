@@ -5,6 +5,7 @@
     ./waybar.nix
     ./rofi.nix
     ./mango.nix
+    ./omp.nix
   ];
 
   home.username = "ms";
@@ -42,6 +43,8 @@
     wl-clipboard
     # postgres: nicer psql
     pgcli
+    # llama server for local llms
+    llama-cpp
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

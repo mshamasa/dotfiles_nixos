@@ -8,7 +8,7 @@
 
       border_radius = 6;
 
-      monitorrule = [
+      monitor_rule = [
         # laptop at the bottom
         "name:eDP-1,scale:1,x:384,y:2160"
         # Dell on top
@@ -16,7 +16,7 @@
       ];
 
       # shows all workspaces
-      tagrule = map (id: "id:${toString id},no_hide:1") (builtins.genList (i: i + 1) 9);
+      tag_rule = map (id: "id:${toString id},no_hide:1") (builtins.genList (i: i + 1) 9);
 
       bind = [
         # rofi

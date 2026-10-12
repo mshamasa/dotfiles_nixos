@@ -1,10 +1,11 @@
 {
   programs.rofi = {
     enable = true;
-    terminal = "wezterm"; # or your terminal of choice
-    font = "Mononoki Nerd Font";
     theme = "gruvbox-dark-soft";
-    extraConfig = {
+
+    settings = {
+      terminal = "wezterm"; # or your terminal of choice
+      font = "Mononoki Nerd Font";
       lines = 10;
       width = 50;
       padding = 15;
