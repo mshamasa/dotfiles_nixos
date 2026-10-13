@@ -79,7 +79,7 @@
   #  /etc/profiles/per-user/ms/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "nvim";
+    LLAMA_ARG_PORT = "9931";
   };
 
   # Let Home Manager install and manage itself.

@@ -12,6 +12,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    omp = {
+      url = "github:can1357/oh-my-pi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -19,6 +24,7 @@
       nixpkgs,
       mangowm,
       home-manager,
+      omp,
       ...
     }:
     {
@@ -32,7 +38,10 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              sharedModules = [ mangowm.hmModules.mango ];
+              sharedModules = [
+                mangowm.hmModules.mango
+                omp.homeManagerModules.default
+              ];
               users.ms = import ./home.nix;
               backupFileExtension = "backup";
             };
