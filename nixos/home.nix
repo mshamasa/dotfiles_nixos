@@ -43,8 +43,8 @@
     wl-clipboard
     # postgres: nicer psql
     pgcli
-    # llama server for local llms
-    llama-cpp
+    # llama server for local llms (vulkan build so it runs on the radeon igpu)
+    (llama-cpp.override { vulkanSupport = true; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -80,6 +80,13 @@
   #
   home.sessionVariables = {
     LLAMA_ARG_PORT = "9931";
+    # offload every layer to the gpu
+    LLAMA_ARG_N_GPU_LAYERS = "99";
+    LLAMA_ARG_CTX_SIZE = "65536";
+    LLAMA_ARG_N_PARALLEL = "1";
+    # default model, so a bare `llama serve` loads it
+    LLAMA_ARG_HF_REPO = "unsloth/Qwen3.8-27B-GGUF:Q4_K_M";
+    LLAMA_CPP_BASE_URL = "http://localhost:9931";
   };
 
   # Let Home Manager install and manage itself.
