@@ -44,7 +44,7 @@
     # postgres: nicer psql
     pgcli
     # llama server for local llms (vulkan build so it runs on the radeon igpu)
-    (llama-cpp.override { vulkanSupport = true; })
+    llama-cpp-vulkan
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
