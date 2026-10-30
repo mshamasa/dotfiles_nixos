@@ -6,6 +6,9 @@
     ./rofi.nix
     ./mango.nix
     ./omp.nix
+    ./yazi.nix
+    ./mpv.nix
+    ./imv.nix
   ];
 
   home.username = "ms";
