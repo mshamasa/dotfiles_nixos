@@ -48,6 +48,32 @@
         "SUPER,Return,spawn,wezterm"
 
         "SUPER,r,reload_config"
+
+        # Swap window with its neighbour (Super+Shift + vim keys)
+        "SUPER+SHIFT,h,exchange_client,left"
+        "SUPER+SHIFT,j,exchange_client,down"
+        "SUPER+SHIFT,k,exchange_client,up"
+        "SUPER+SHIFT,l,exchange_client,right"
+
+        # Move window to the other monitor (Dell is above the laptop)
+        "SUPER+ALT,k,tagmon,up"
+        "SUPER+ALT,j,tagmon,down"
+
+        "SUPER,f,togglefloating,"
+
+        # Resize window (Super+Ctrl + vim keys); moves the split in tiled layouts
+        "SUPER+CTRL,h,resizewin,-50,+0"
+        "SUPER+CTRL,l,resizewin,+50,+0"
+        "SUPER+CTRL,k,resizewin,+0,-50"
+        "SUPER+CTRL,j,resizewin,+0,+50"
+      ]
+      # Move window to workspace N with Super+Shift+N
+      ++ map (id: "SUPER+SHIFT,${toString id},tag,${toString id},0") (builtins.genList (i: i + 1) 9);
+
+      # Super + left-drag to move, Super + right-drag to resize
+      mousebind = [
+        "SUPER,btn_left,moveresize,curmove"
+        "SUPER,btn_right,moveresize,curresize"
       ];
     };
 
